@@ -1,5 +1,5 @@
 export function fetchSpaceFormations() {
-  const spaceFormations = fetch('http://localhost:3000/api/v1/space_formations', {headers: {'Authorization': `Bearer ${localStorage.getItem('jwt')}`}})
+  const spaceFormations = fetch('http://localhost:3000/api/v1/space_formations')
     .then(res => {
       return res.json()
     }).then(responseJson => {
