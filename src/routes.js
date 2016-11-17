@@ -22,12 +22,3 @@ function requireAuth(nextState, replace) {
   }
 }
 
-function redirectIfLoggedIn(nextState, replace) {
-  console.log(auth.loggedIn());
-  if (auth.loggedIn()) {
-    replace({
-      pathname: '/home',
-      state: { nextPathname: nextState.location.pathname }
-    })
-  }
-}
