@@ -3,7 +3,6 @@ import { Route, IndexRoute } from 'react-router';
 import App from './components/App';
 import LogInPage from './components/LogInPage';
 import SpaceFormationContainer from './components/SpaceFormationContainer'
-import auth from './auth/auth';
 
 export default (
   <Route path="/" component={App}>
@@ -13,8 +12,7 @@ export default (
 );
 
 function requireAuth(nextState, replace) {
-  console.log(auth.loggedIn());
-  if (!auth.loggedIn()) {
+  if (!(!!localStorage.jwt)) {
     replace({
       pathname: '/login',
       state: { nextPathname: nextState.location.pathname }

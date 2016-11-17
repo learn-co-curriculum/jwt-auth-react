@@ -4,11 +4,11 @@ export default function sessionReducer(state=null, action) {
     case 'LOG_IN':
       localStorage.setItem('jwt', action.payload)
       browserHistory.push('/')
-      return action.payload
+      return true
     case 'LOG_OUT':
       localStorage.removeItem('jwt')
       browserHistory.push('/login')
-      return null
+      return false
     default:
       return state;
   }
