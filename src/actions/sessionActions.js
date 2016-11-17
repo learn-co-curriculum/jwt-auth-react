@@ -1,9 +1,13 @@
 export function logInUser(credentials) {
   const jwt = logIn(credentials)
-   
-
   return {type: 'LOG_IN', payload: jwt}
 }
+
+export function logOut() {
+  return {type: 'LOG_OUT'}
+}
+
+
 
 function logIn(credentials) {
   const request = new Request('http://localhost:3000/login', {

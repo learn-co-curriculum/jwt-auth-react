@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
-import {Navbar} from 'react-bootstrap'
+import {Navbar, Nav, NavItem} from 'react-bootstrap'
+import {connect} from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as actions from '../actions/sessionActions.js'
 
 class App extends Component {   
+
+  logOutNavItem() {
+    return (
+      <NavItem onClick={this.logOut.bind(this)}>log out</NavItem>
+    )
+  }
+
+  logOut(e) {
+    e.preventDefault();
+    this.props.actions.logOut();
+  }
 
   render() {
     return (
@@ -12,6 +26,9 @@ class App extends Component {
               <a href="#">SpaceBook</a>
             </Navbar.Brand>
           </Navbar.Header>
+          <Nav>
+            {this.props.session ? this.logOutNavItem() : null}
+          </Nav>
         </Navbar>
         {this.props.children}
       </div>
@@ -19,4 +36,12 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {session: state.session}
+}
+
+function mapDispatchToProps(dispatch) {
+  return {actions: bindActionCreators(actions, dispatch)}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

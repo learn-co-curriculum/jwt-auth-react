@@ -5,6 +5,10 @@ export default function sessionReducer(state=null, action) {
       localStorage.setItem('jwt', action.payload)
       browserHistory.push('/')
       return action.payload
+    case 'LOG_OUT':
+      localStorage.removeItem('jwt')
+      browserHistory.push('/login')
+      return null
     default:
       return state;
   }
